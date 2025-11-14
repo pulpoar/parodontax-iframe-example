@@ -6,21 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parodontax Plaque Check</title>
     <link rel="icon" href="https://cdn.products.pulpoar.com/favicon_icon/favicon.ico" type="image/fav-icon" />
-    <script>
-      window.addEventListener('message', function(event) {
-        if (event.origin === 'https://booster.pulpoar.com') {
-          // Forward the message to parent window
-          window.parent.postMessage(event.data, '*');
-        }
-      });
-    </script>
   </head>
   <body style="width: 100%; height: 100%; margin: 0; padding: 0; display: flex; overflow: hidden; overscroll-behavior: none;">
     <iframe
-      src="https://plaque-check.pulpoar.com/"
+      src="http://localhost:5173/"
       style="flex: 1; border: none; width: 100%; height: 100%"
       frameborder="0"
-      allow="camera *;microphone *"
+      allow="camera *;"
     ></iframe>
+
+    <!-- PulpoAR Plugin SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@pulpoar/plugin-sdk@latest/dist/index.iife.js"></script>
+    
+    <!-- Event Listeners -->
+    <script>
+      console.log('Listening for Parodontax SDK events...');
+
+      pulpoar.onReady((payload) => {
+        console.log('onReady event received:', payload);
+      });
+
+      pulpoar.onError((payload) => {
+        console.log('onError event received:', payload);
+      });
+
+      pulpoar.onPathChange((payload) => {
+        console.log('onPathChange event received:', payload);
+      });
+
+      pulpoar.onStartExperience((payload) => {
+        console.log('onStartExperience event received:', payload);
+      });
+
+      pulpoar.onStartScanning((payload) => {
+        console.log('onStartScanning event received:', payload);
+      });
+
+      pulpoar.onGdprApprove((payload) => {
+        console.log('onGdprApprove event received:', payload);
+      });
+
+      pulpoar.onHamburger((payload) => {
+        console.log('onHamburger event received:', payload);
+      });
+
+      pulpoar.onOpenCamera((payload) => {
+        console.log('onOpenCamera event received:', payload);
+      });
+
+      pulpoar.onAcceptPhoto((payload) => {
+        console.log('onAcceptPhoto event received:', payload);
+      });
+
+      pulpoar.onRetakePhoto((payload) => {
+        console.log('onRetakePhoto event received:', payload);
+      });
+
+      pulpoar.onResultPage((payload) => {
+        console.log('onResultPage event received:', payload);
+      });
+
+      pulpoar.onGoToRecommendationDetails((payload) => {
+        console.log('onGoToRecommendationDetails event received:', payload);
+      });
+
+      pulpoar.onGoToProduct((payload) => {
+        console.log('onGoToProduct event received:', payload);
+      });
+    </script>
   </body>
 </html>
