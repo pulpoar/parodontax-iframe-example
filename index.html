@@ -9,11 +9,27 @@
   </head>
   <body style="width: 100%; height: 100%; margin: 0; padding: 0; display: flex; overflow: hidden; overscroll-behavior: none;">
     <iframe
+      id="parodontax-iframe"
       src="http://localhost:5173/"
       style="flex: 1; border: none; width: 100%; height: 100%"
       frameborder="0"
       allow="camera *;"
     ></iframe>
+
+    <!-- HB Mode: Pass hb=true parameter from parent URL to iframe -->
+    <script>
+      (function() {
+        const parentParams = new URLSearchParams(window.location.search);
+        const isHbMode = parentParams.get('hb') === 'true';
+        
+        if (isHbMode) {
+          const iframe = document.getElementById('parodontax-iframe');
+          const iframeSrc = new URL(iframe.src);
+          iframeSrc.searchParams.set('hb', 'true');
+          iframe.src = iframeSrc.toString();
+        }
+      })();
+    </script>
 
     <!-- PulpoAR Plugin SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@pulpoar/plugin-sdk@latest/dist/index.iife.js"></script>
